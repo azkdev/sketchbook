@@ -17,7 +17,7 @@ class circle {
     }
 
     boolean overlapping(circle c) {
-        return dist(x, y, c.x, c.y) - 0 < r + c.r;
+        return dist(x, y, c.x, c.y) - 1 < r + c.r;
     }
 
     void grow() {
@@ -25,8 +25,9 @@ class circle {
     }
 
     void show() {
-        noStroke();
-        fill(c);
+         stroke(c);
+         strokeWeight(2);
+         noFill();
         ellipse(x, y, r * 2, r * 2);
     }
 
