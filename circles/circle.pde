@@ -14,7 +14,7 @@ class Circle {
   }
   
   void grow() {
-    if (growing && r < 10) r += .5;
+    if (growing && r < 6) r += .5;
   }
   
   void show() {
