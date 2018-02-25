@@ -21,7 +21,7 @@ class circle {
     }
 
     void grow() {
-        if (growing) r += 1;
+        if (growing) r += .1;
     }
 
     void show() {
