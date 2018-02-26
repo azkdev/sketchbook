@@ -5,7 +5,7 @@ int count;
 int attempts;
 
 void setup() {
-  size(1440, 720);
+  size(1920, 1080);
   frameRate(60);
   circles = new ArrayList<Circle>();
   cities = loadJSONArray("city.list.min.json");
@@ -44,13 +44,12 @@ void draw() {
 }
 
 boolean generateCircle() {
-  println(cities.size());
   int idx = int(random(0, cities.size()));
   JSONObject city = cities.getJSONObject(idx).getJSONObject("coord");
-  float x = city.getFloat("lon") * 4 + width * .5;
-  float y = city.getFloat("lat") * -4 + height * .5;
+  float x = city.getFloat("lon") * 5.3 + width * .5;
+  float y = city.getFloat("lat") * -5.3 + height * .5;
   for (Circle c: circles) {
-    if (x != c.x && y != c.y) {
+    if (x != c.x) {
       float d = dist(x, y, c.x, c.y);
       if (d < c.r) {
         cities.remove(idx);
