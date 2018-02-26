@@ -2,18 +2,15 @@ ArrayList<circle> circles;
 ArrayList<PVector> spots;
 PImage img;
 int total, count, attempts;
-PImage particle;
 
 void setup() {
-    size(960, 480);
+    size(800, 800);
 
     circles = new ArrayList<circle>();
     spots = new ArrayList<PVector>();
     
-    img = loadImage("kotlin.png");
+    img = loadImage("logo.png");
     img.loadPixels();
-    
-    particle = loadImage("particle.png");
 
     for (int x = 0; x < img.width; x++) {
         for (int y = 0; y < img.height; y++) {
@@ -55,16 +52,22 @@ void draw() {
             }
         }
         c.grow();
-        if (c.r > 1) c.show();
+        if (c.r > 2) c.show();
     }
+}
+
+void keyPressed() {
+  if (keyCode == 32) {
+    saveFrame();
+  }
 }
 
 boolean spawnPixel() {
     int idx = int(random(spots.size()));
     if (idx == 0) return false;
     PVector r = spots.get(idx);
-    float x = r.x * 2;
-    float y = r.y * 2;
+    float x = r.x * .4;
+    float y = r.y * .4;
     
     for (circle c : circles) {
         if (x != c.x && dist(x, y, c.x, c.y) < c.r) {
@@ -73,8 +76,7 @@ boolean spawnPixel() {
         }
     }
 
-    //circles.add(new circle(x, y, 2, int(r.z)));
-    circles.add(new circle(x, y, 1, particle));
+    circles.add(new circle(x, y, 2, int(r.z)));
     spots.remove(idx);
     return true;
 }
