@@ -4,12 +4,12 @@ PImage img;
 int total, count, attempts;
 
 void setup() {
-    size(600, 600);
+    size(960, 480);
 
     circles = new ArrayList<circle>();
     spots = new ArrayList<PVector>();
     
-    img = loadImage("manchester.png");
+    img = loadImage("kotlin.png");
     img.loadPixels();
 
     for (int x = 0; x < img.width; x++) {
@@ -22,7 +22,7 @@ void setup() {
 }
 
 void draw() {
-    background(0);
+    background(255);
 
     total = 20;
     count = 0;
@@ -52,15 +52,15 @@ void draw() {
             }
         }
         c.grow();
-        if (c.r > .5) c.show();
+        if (c.r > 2) c.show();
     }
 }
 
 boolean spawnPixel() {
     int idx = int(random(spots.size()));
     PVector r = spots.get(idx);
-    float x = r.x * 1;
-    float y = r.y * 1;
+    float x = r.x * 2;
+    float y = r.y * 2;
     
     for (circle c : circles) {
         if (x != c.x && dist(x, y, c.x, c.y) < c.r) {
@@ -69,7 +69,7 @@ boolean spawnPixel() {
         }
     }
 
-    circles.add(new circle(x, y, .1, int(r.z)));
+    circles.add(new circle(x, y, 2, int(r.z)));
     spots.remove(idx);
     return true;
 }
